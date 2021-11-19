@@ -1581,10 +1581,6 @@ void get_tiles(tile *tiles) {
 
 
 
-//function to update the string to display
-void update_display_string(char *string) {
-    strcpy(display_string_string, string);
-}
 
 
 
