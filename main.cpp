@@ -398,7 +398,6 @@ int wannadie = 0;
 
 SDL_mutex *display_string_mutex;
 
-char *display_string_string;
 
 
 
@@ -1706,8 +1705,6 @@ void init() {
     load_rom();
     load_header();
     print_cartridge_header();
-    display_string_thread(regop_to_string());
-    display_string_string = static_cast<char *>(malloc(sizeof(regop_to_string())));
 
 }
 
