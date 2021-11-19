@@ -1583,54 +1583,6 @@ void get_tiles(tile *tiles) {
 
 
 
-static int display_string(void *ptr) {
-    if (TTF_Init() < 0) {
-        // Error handling code
-    }
-    char *string = (char *)ptr;
-    SDL_Window *window2 = SDL_CreateWindow("",   SDL_WINDOWPOS_UNDEFINED,SDL_WINDOWPOS_UNDEFINED,    1280,      120,  0);
-    //set display string
-    //create renderer
-    SDL_Renderer *renderer2 = SDL_CreateRenderer(window2, -1, 0);
-    TTF_Font* Sans = TTF_OpenFont("Arial.ttf", 200);
-    SDL_Color White = {255, 255, 255};
-    SDL_Surface* surfaceMessage2 = TTF_RenderText_Solid(Sans, string, White);
-    SDL_Texture* Message2 = SDL_CreateTextureFromSurface(renderer2, surfaceMessage2);
-    SDL_Rect Message_rect;
-    Message_rect.x = 0;
-    Message_rect.y = 0;
-    Message_rect.w = 1280;
-    Message_rect.h = 120;
-    SDL_RenderCopy(renderer2, Message2, NULL, &Message_rect);
-    SDL_RenderPresent(renderer2);
-
-    if (window2 == NULL) {
-        printf("Failed to create window: %s\n", SDL_GetError());
-        exit(EXIT_FAILURE);
-    }
-
-    SDL_bool done = SDL_FALSE;
-    while (!done) {
-        SDL_Event event;
-        //update string with mutex
-        SDL_FreeSurface(surfaceMessage2);
-        surfaceMessage2 = TTF_RenderText_Solid(Sans, display_string_string, White);
-        Message2 = SDL_CreateTextureFromSurface(renderer2, surfaceMessage2);
-        SDL_UnlockMutex(display_string_mutex);
-        SDL_RenderCopy(renderer2, Message2, NULL, &Message_rect);
-        SDL_RenderPresent(renderer2);
-        SDL_FreeSurface(surfaceMessage2);
-        SDL_DestroyTexture(Message2);
-        while (SDL_PollEvent(&event)) {
-            if (event.type == SDL_QUIT) {
-                done = SDL_TRUE;
-
-            }
-        }
-    }
-
-    SDL_DestroyWindow(window2);
-}
 //create a thread to run a display_string function
 void display_string_thread(char *string) {
 
