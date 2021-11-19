@@ -1636,10 +1636,7 @@ void create_window() {
         SDL_UpdateWindowSurface(window2);
 
         SDL_RenderPresent(renderer2);
-        //SDL_FreeSurface(surfaceMessage2);
-        //SDL_DestroyTexture(Message2);
-        //update_display_string("hello");
-        //update_display_string(reg_to_string());
+
         printf("PC: %04X opcode %02X\n", reg.PC, read_memory(reg.PC));
         cpu_step(read_memory(reg.PC));
         counter++;
