@@ -1711,17 +1711,12 @@ void init() {
 
 }
 
-//run create window in a thread
-void run() {
-//create with pthread
-create_window();
-}
 
 
 int main(int argv, char** args) {
     scanf("%X",&breakpoint);
     init();
-    run();
+    create_window();
 
 
     return 0;
