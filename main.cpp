@@ -1578,15 +1578,9 @@ void get_tiles(tile *tiles) {
     }
 }
 
-//create a window with sdl2 to display a string until closed update string with display_string_mutex
 
 
 
-
-//create a thread to run a display_string function
-void display_string_thread(char *string) {
-
-}
 //function to update the string to display
 void update_display_string(char *string) {
     strcpy(display_string_string, string);
