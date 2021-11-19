@@ -6,5 +6,5 @@ CXX_DEFINES =
 
 CXX_INCLUDES = 
 
-CXX_FLAGS = -g -std=gnu++1z
+CXX_FLAGS =  -std=c++11 -pthread -lmingw32 -g -std=gnu++1z
 
