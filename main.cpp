@@ -2059,31 +2059,31 @@ void create_window() {
 
     while (running) {
 
-            SDL_PollEvent(&event);
-            if(reg.PC>0x4000&&reg.PC<0x8000){
-                printf("PC: %04X opcode %02X\n", reg.PC-0x4000+offset, read_memory(reg.PC));
+        SDL_PollEvent(&event);
+        if(reg.PC>0x4000&&reg.PC<0x8000){
+            printf("PC: %04X opcode %02X\n", reg.PC-0x4000+offset, read_memory(reg.PC));
 
 
-            }{
-                printf("PC: %04X opcode %02X\n", reg.PC, read_memory(reg.PC));
-            }
+        }{
+            printf("PC: %04X opcode %02X\n", reg.PC, read_memory(reg.PC));
+        }
 
-            //open log.txt to write
-            FILE *fp;
-            fp = fopen("log.txt", "a");
-            if(reg.PC>0x4000&&reg.PC<0x8000){
-                fprintf(fp, " 0%04X\n", reg.PC-0x4000+offset);
-            } else{
-                fprintf(fp, "0%04X\n", reg.PC);
-            }
-            fclose(fp);
-
-
+        //open log.txt to write
+        FILE *fp;
+        fp = fopen("log.txt", "a");
+        if(reg.PC>0x4000&&reg.PC<0x8000){
+            fprintf(fp, " 0%04X\n", reg.PC-0x4000+offset);
+        } else{
+            fprintf(fp, "0%04X\n", reg.PC);
+        }
+        fclose(fp);
 
 
-            cpu_step(read_memory(reg.PC));
-            counter-=last_amount_cycles;
-if (counter<=0){
+
+
+        cpu_step(read_memory(reg.PC));
+        counter-=last_amount_cycles;
+        if (counter<=0){
             render();
             counter += 65208;
             // if so, update the screen
@@ -2103,12 +2103,10 @@ if (counter<=0){
             memcpy(ppu_registers,&mem.memory[0xff40],0xc);
             //set
             last_update = SDL_GetTicks();
-}
+        }
 
-            write_memory(0xFF40,0x70);
-            write_memory(0xFF41,0x93);
-            if(counter>=1000){
-            }
+        write_memory(0xFF40,0x70);
+        write_memory(0xFF41,0x93);
 
 
 
